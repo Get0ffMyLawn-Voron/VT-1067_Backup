@@ -1,11 +1,11 @@
 #!/bin/bash
 
-USER_CONFIG_PATH="${HOME}/printer_data/config"
-MOONRAKER_CONFIG="${HOME}/printer_data/config/moonraker.conf"
+USER_CONFIG_PATH="${HOME}/VT1067_data/config"
+MOONRAKER_CONFIG="${HOME}/VT1067_data/config/moonraker.conf"
 KLIPPER_PATH="${HOME}/klipper"
 
-K_SHAKETUNE_PATH="${HOME}/klippain_shaketune"
-K_SHAKETUNE_VENV_PATH="${HOME}/klippain_shaketune-env"
+K_SHAKETUNE_PATH="${HOME}/VT1067_data/klippain_shaketune"
+K_SHAKETUNE_VENV_PATH="${HOME}/VT1067_data/klippain_shaketune-env"
 
 set -eu
 export LC_ALL=C
@@ -22,7 +22,7 @@ function preflight_checks {
         exit -1
     fi
 
-    if [ "$(sudo systemctl list-units --full -all -t service --no-legend | grep -F 'klipper.service')" ]; then
+    if [ "$(sudo systemctl list-units --full -all -t service --no-legend | grep -F 'klipper-VT1067.service')" ]; then
         printf "[PRE-CHECK] Klipper service found! Continuing...\n\n"
     else
         echo "[ERROR] Klipper service not found, please install Klipper first!"
@@ -121,12 +121,12 @@ function add_updater {
 
 function restart_klipper {
     echo "[POST-INSTALL] Restarting Klipper..."
-    sudo systemctl restart klipper
+    sudo systemctl restart klipper-VT1067
 }
 
 function restart_moonraker {
     echo "[POST-INSTALL] Restarting Moonraker..."
-    sudo systemctl restart moonraker
+    sudo systemctl restart moonraker-VT1067
 }
 
 
